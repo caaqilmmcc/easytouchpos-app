@@ -22,15 +22,10 @@ interface CartState {
   removeFromCart: (product: Product) => void
   removeAllById: (product: Product) => void
 }
-interface SelectPosProfileProps {
-  selectPosProfile: string
-  onSelectedPosProfile: (name: string) => void
+interface OpenShiftState {
+  openShift: string
+  setOpenShift: (shift: string) => void
 }
-export const useSelectPosProfile = create<SelectPosProfileProps>((set) => ({
-  selectPosProfile: 'akram',
-  onSelectedPosProfile: (name) => set({ selectPosProfile: name }),
-}))
-
 export const useCategory = create<CategoryState>((set) => ({
   isSelectedCategory: 'ALL',
   setSelectedCategory: (category = 'ALL') =>
@@ -44,9 +39,9 @@ export const useModal = create<ModalState>((set) => ({
 }))
 
 export const useModalSheet = create<ModalSheetState>((set) => ({
-  isOpen: false,
+  isOpen: true,
   modalType: '',
-  onOpen: (name) => set({ isOpen: true, modalType:name }),
+  onOpen: (name) => set({ isOpen: true, modalType: name }),
   onClose: () => set({ isOpen: false, modalType: '' }),
 }))
 
@@ -79,3 +74,16 @@ export const useCartStore = create<CartState>()(
     }
   )
 )
+
+// const useOpenShifStore = create((set) => ({
+//   openShift: {},
+//   setOpenShift: async (user) => {
+//     const response = await fetch(pond)
+//     set({ openShift: await response.data.messate })
+//   },
+// }))
+
+// export const useOpenShifStore = create<OpenShiftState>((set) => ({
+//   openShift: "",
+//   setOpenShift: (shift) => set({ openShift: shift }),
+// }))

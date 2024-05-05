@@ -1,8 +1,8 @@
 <template>
-  <Layout>
+  <div>
     <OpenShiftModal />
     <CartModal />
-  </Layout>
+  </div>
 </template>
 
 <script lang="ts" setup>

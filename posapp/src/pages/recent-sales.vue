@@ -1,7 +1,7 @@
-<template lang="ts">
-<div></div>;
+<template >
+    <h1>
+        hello
+    </h1>
 </template>
-<script>
-export default {};
+<script lang="ts" setup>
 </script>
-<style lang=""></style>
