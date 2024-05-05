@@ -4,10 +4,19 @@ import { userResource } from './data/user.js'
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: () => import('@/pages/Home.vue'),
+    path:'/',
+    name:'Public',
+    redirect: '/',
+    component: () => import('./Layout.vue'),
+    children:[
+      {
+        path: '/',
+        name: 'Home',
+        component: () => import('@/pages/Home.vue'),
+      },
+    ]
   },
+ 
   {
     name: 'Login',
     path: '/account/login',
