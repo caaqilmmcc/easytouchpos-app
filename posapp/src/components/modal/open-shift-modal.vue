@@ -1,6 +1,10 @@
 <template>
   <div>
-    <Modal :open="isOpen" title="Create POS Opening Shift" :onClose="onClose">
+    <Modal
+      :open="isShift"
+      title="Create POS Opening Shift"
+      :onClose="() => $router.push('/')"
+    >
       <form :onSubmit="onSubmit" class="w-full space-y-3">
         <FormField
           v-slot="{ componentField }"
@@ -117,12 +121,13 @@ import {
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import axios from 'axios'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useModal } from '@/hook/store'
+import { session } from '@/data/session'
 
-const { isOpen, onClose } = useModal((state) => state)
-
+console.log(session.user, '🚀')
 const openShift = ref<any>([])
+const isShift = ref(true)
 const formSchema = toTypedSchema(
   z.object({
     company: z.string({ required_error: 'Please select an company.' }).min(1),
@@ -143,6 +148,19 @@ const openinDialogList = async () => {
 }
 openinDialogList()
 
+const CheckOpeninDialogList = async () => {
+  await axios
+    .get('/api/method/posawesome.posawesome.api.posapp.check_opening_shift', {
+      params: { user: session.user },
+    })
+    .then((response) => {
+      if (response.data.message) {
+        isShift.value = false
+      }
+    })
+}
+CheckOpeninDialogList()
+
 const onSubmit = handleSubmit(async (values) => {
   console.log('🇲🇦', values)
   await axios
@@ -151,13 +169,8 @@ const onSubmit = handleSubmit(async (values) => {
       {
         pos_profile: values.POSProfile,
         company: values.company,
-        balance_details: [
-          {
-            mode_of_payment: 'Cash',
-            amount: 0,
-            currency: 'USD',
-          },
-        ],
+        balance_details:
+          '[{"mode_of_payment":"Cash","amount":0,"currency":"USD"}]',
       }
     )
     .then((response) => console.log('🇸🇴', response))

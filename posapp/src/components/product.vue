@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Checkbox } from "@/components/ui/checkbox";
-import { useCartStore } from "@/hook/store";
+import { useCartStore, } from "@/hook/store";
 
 export type Product = {
   id: number;

@@ -8,12 +8,12 @@ import {
 } from '@/components/ui/dialog'
 
 const props = defineProps<{
-  title: string,
-  open:boolean,
-  onClose:() =>void,
+  title: string
+  open: boolean
+  onClose: () => void
 }>()
-const handleClose=() =>{
-  // props.onClose,
+const handleClose = () => {
+  props.onClose()
 }
 </script>
 

@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { ShoppingCart, UserCircle } from 'lucide-vue-next'
+import { Button } from '@/components/ui/button'
+import { ModeToggle } from '@/components/ui/mode-toggle'
+import { useModalSheet } from '@/hook/store'
+import { session } from '@/data/session'
 
-import { ShoppingCart } from "lucide-vue-next";
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/ui/mode-toggle";
-import { useModalSheet } from "@/hook/store";
-const {onOpen}=useModalSheet(state=>state)
+const { onOpen } = useModalSheet((state) => state)
+
 </script>
 <template>
   <header
@@ -14,8 +16,12 @@ const {onOpen}=useModalSheet(state=>state)
     <div class="flex items-center gap-4">
       <ModeToggle />
       <Button class="lg:hidden block" @click="onOpen('CartModal')">
-        <ShoppingCart class="w-4 h-4"/>
+        <ShoppingCart class="w-4 h-4" />
       </Button>
+      <div class="flex items-center capitalize gap-2">
+        <b>{{ session.user }}</b>
+        <UserCircle class="w-5 h-5" />
+      </div>
     </div>
   </header>
 </template>
