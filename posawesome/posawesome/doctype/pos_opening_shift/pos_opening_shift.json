@@ -103,8 +103,7 @@
    "fieldname": "balance_details",
    "fieldtype": "Table",
    "label": "Opening Balance Details",
-   "options": "POS Opening Shift Detail",
-   "reqd": 1
+   "options": "POS Opening Shift Detail"
   },
   {
    "fieldname": "section_break_9",
@@ -130,7 +129,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2024-05-02 13:12:29.555453",
+ "modified": "2024-05-05 09:01:38.811531",
  "modified_by": "Administrator",
  "module": "Posawesome",
  "name": "POS Opening Shift",

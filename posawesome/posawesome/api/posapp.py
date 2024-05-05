@@ -12,11 +12,11 @@ from erpnext.stock.get_item_details import get_item_details
 from erpnext.accounts.doctype.pos_profile.pos_profile import get_item_groups
 from frappe.utils.background_jobs import enqueue
 from erpnext.accounts.party import get_party_bank_account
-from erpnext.stock.doctype.batch.batch import (
-    get_batch_no,
-    get_batch_qty,
-    set_batch_nos,
-)
+# from erpnext.stock.doctype.batch.batch import (
+#     get_batch_no,
+#     get_batch_qty,
+#     set_batch_nos,
+# )
 from erpnext.accounts.doctype.payment_request.payment_request import (
     get_dummy_message,
     get_existing_payment_request_amount,
