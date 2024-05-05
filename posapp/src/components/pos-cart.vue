@@ -17,19 +17,4 @@ import { computed,  } from "vue";
 const { cart } = useCartStore((state) => state);
 const groupBy = computed(()=>cartGroupById(cart.value));
 
-
-
-// Object.keys(groupBy).map((id) => {
-//   item.value=groupBy[id][0]
-//   total.value=getCartTotal(groupBy[id]);
-//   return(
-//     <div :key="id">
-//       item.value.image[0]&&(
-
-//         <img :src="item.value.image[0]" :alt="item.value.title[0]" class="h-14" />
-//       )
-
-//       </div>
-//   )
-// });
 </script>

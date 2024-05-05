@@ -36,7 +36,7 @@ const isProductInCart = (product: Product) => {
     />
     <Label
       :for="`checkbox-${product.id}`"
-      class="flex cursor-pointer flex-col items-center justify-between rounded-xl border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary [&:has([data-state=checked])]:border-primary"
+      :class="` flex cursor-pointer flex-col items-center justify-between rounded-xl border-2 border-muted bg-popover hover:bg-accent hover:text-accent-foreground peer-data-[state=checked]:border-primary ${isProductInCart(product)&&'border-primary'}`"
     >
       <div
         class="bg-white rounded-xl flex justify-center items-center w-full h-28"
