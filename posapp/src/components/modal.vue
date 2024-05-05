@@ -2,30 +2,31 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@/components/ui/dialog'
+
 const props = defineProps<{
-  title: string
-  open: boolean
+  title: string,
+  open:boolean,
+  onClose:() =>void,
 }>()
-const
+const handleClose=() =>{
+  // props.onClose,
+}
 </script>
 
 <template>
-  <Dialog :open="open">
-    <DialogTrigger> Edit Profile </DialogTrigger>
+  <Dialog :open="open" @update:open="handleClose">
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>{{ $props.title }}</DialogTitle>
+        <DialogTitle>{{ props.title }}</DialogTitle>
       </DialogHeader>
 
-      <DialogFooter> 
-        <slot/>
-         </DialogFooter>
+      <DialogFooter>
+        <slot />
+      </DialogFooter>
     </DialogContent>
   </Dialog>
 </template>

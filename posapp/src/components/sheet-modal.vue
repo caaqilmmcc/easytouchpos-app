@@ -4,19 +4,24 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 const props = defineProps<{
   title: string;
+  open: boolean;
+  onClose: () => void;
+
 }>();
+const handleClose=() =>{
+  props.onClose(),
+  console.log("close", '🚀')
+
+}
 
 </script>
 
 <template>
-  <Sheet>
-    <SheetTrigger >
-     <slot name="btnTrigger"/>
-    </SheetTrigger>
+  <Sheet :open="$props.open" @update:open="handleClose">
+    
     <SheetContent>
       <SheetHeader>
         <SheetTitle>{{ props.title }}</SheetTitle>
