@@ -1,6 +1,6 @@
 <template>
   <fieldset class="flex flex-col flex-1 rounded-lg border overflow-scroll p-4">
-    <legend class="text-sm font-medium">Order Summary</legend>
+    <legend class="text-sm font-medium">Order Summary ({{ cart.length }})</legend>
     <CartCard v-for="(id, index) in Object.keys(groupBy)" :key="index" :item="groupBy[id][0]" :total="getCartTotal(groupBy[id])" />
   </fieldset>
 </template>
