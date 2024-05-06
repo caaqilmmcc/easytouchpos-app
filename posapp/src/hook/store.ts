@@ -49,22 +49,22 @@ export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       cart: [],
-      addToCart: (product: Product) => {
+      addToCart: (product: any) => {
         set((state) => ({
           cart: [...state.cart, product],
         }))
       },
-      removeFromCart: (product: Product) => {
-        const productToRemove = get().cart.findIndex((p) => p.id === product.id)
+      removeFromCart: (product: any) => {
+        const productToRemove = get().cart.findIndex((p:any) => p.item_code === product.item_code)
         set((state) => {
           const newCart = [...state.cart]
           newCart.splice(productToRemove, 1)
           return { cart: newCart }
         })
       },
-      removeAllById: (product: Product) => {
+      removeAllById: (product: any) => {
         set((state) => {
-          const newCart = state.cart.filter((c) => c.id != product.id)
+          const newCart = state.cart.filter((c) => c.item_code != product.item_code)
           return { cart: newCart }
         })
       },

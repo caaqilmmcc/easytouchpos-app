@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="flex items-start justify-between gap-3">
-      <div class="flex items-start gap-2">
+      <div class="flex items-center gap-3">
         <div
           v-if="$props.item.image"
           class="w-16 h-16 flex shrink-0 relative items-center justify-center p-2 rounded-md border bg-white"
         >
-          <img :src="$props.item.image" :alt="$props.item.title" class="h-14" />
+          <img :src="$props.item.image" :alt="$props.item.item_name" class="h-14" />
           <Button
             @click="removeAllById(item)"
             size="icon"
@@ -14,11 +14,12 @@
             ><X class="w-3 h-3"
           /></Button>
         </div>
-        <div class="flex-1" v-if="$props.item.title">
-          <h1>{{ props.item.title }}</h1>
+        <div class="flex-1 flex flex-col" v-if="$props.item.item_name">
+          <b>{{ props.item.item_name }}</b>
+          <small>{{ props.item.item_group }}</small>
         </div>
       </div>
-      <div class="flex flex-col items-center gap-2">
+      <div class="flex flex-col items-center gap-1.5">
         <b>${{ props.total }}</b>
         <Qty :item="item" />
       </div>

@@ -14,10 +14,6 @@ const AllCategories = ref<ItemGroup[]>([]);
 
 const product_categories = async () => {
   const response = await frappe.FindMany({doctype:"Item Group", fields:["name", "item_group_name"]})
-  // axios.get(
-  //   "https://fakestoreapi.com/products/categories"
-  // );
-  console.log("🚗", response)
   AllCategories.value = response;
 };
 product_categories();
@@ -42,7 +38,7 @@ product_categories();
         >{{ category.item_group_name }}</Badge
       >
     </div>
-    <div class="py-4">
+    <div class="py-4 ">
       <productList />
     </div>
   </div>

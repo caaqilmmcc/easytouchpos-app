@@ -1,30 +1,51 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-import axios from "axios";
-import Product from "@/components/product.vue";
-import { Product as ProductType } from "@/components/product.vue";
-import { useCategory } from "@/hook/store";
-const { isSelectedCategory } = useCategory((state) => state);
-const products = ref<ProductType[]>([]);
+import { computed, ref } from 'vue'
+import axios from 'axios'
+import Product from '@/components/product.vue'
+import { Product as ProductType } from '@/components/product.vue'
+import { useCategory } from '@/hook/store'
+import { getOpeningShit } from '@/hook/getOpenShift'
+import { currentUser } from '@/hook/currentUser'
+
+const { isSelectedCategory } = useCategory((state) => state)
+const products = ref<any[]>([])
 
 const productList = async () => {
-  const response = await axios.get("https://fakestoreapi.com/products");
-  products.value = response.data;
-};
-productList();
+  // const response = await axios.get("https://fakestoreapi.com/products");
+
+  const data = await getOpeningShit(`${currentUser()}`)
+  const response = await axios.post(
+    '/api/method/posawesome.posawesome.api.posapp.get_items',
+    {
+      pos_profile: JSON.stringify(data.message['pos_profile']),
+      price_list: '',
+      item_group: '',
+      search_value: '',
+    }
+  )
+  products.value = response.data.message
+}
+productList()
+
+console.log(products, '💯')
 // Compute filtered products based on the selected category
-const filteredProducts = computed(() => {
-  if (isSelectedCategory.value === "ALL") return products.value; // If no category selected, return all products
-  return products.value.filter(
-    (product) => product.category === isSelectedCategory.value
-  );
-});
+// const filteredProducts = computed(() => {
+//   return products.value.filter(
+//     (product) => product.category === isSelectedCategory.value
+//   )
+// })
 </script>
 
 <template>
-  <div class="grid md:grid-cols-3 lg:grid-cols-4 overflow-scroll xl:grid-cols-6 gap-2">
-    <div v-for="(product, index) in filteredProducts" :key="index">
-      <Product :product="product" />
+  <div
+    class="grid md:grid-cols-3 lg:grid-cols-4 overflow-scroll xl:grid-cols-6 gap-2">
+    <div v-for="(item, index) in products" :key="index">
+      <Product :product="item" />
+
+    
     </div>
+    <!-- <div v-for="(product, index) in filteredProducts" :key="index">
+      <Product :product="product" />
+    </div> -->
   </div>
 </template>

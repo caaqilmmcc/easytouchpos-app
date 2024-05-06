@@ -1,15 +1,14 @@
-import { Product as ProductType } from "@/components/product.vue";
 
 export function cartGroupById(
-  products?: ProductType[]
-): Record<string, ProductType[]> {
+  products?: any[]
+): Record<string, any[]> {
   return (
     (products ?? []).reduce(
       (
-        accumulator: Record<string, ProductType[]>,
-        currentProduct: ProductType
+        accumulator: Record<string, any[]>,
+        currentProduct: any
       ) => {
-        const id = currentProduct.id;
+        const id = currentProduct.item_code;
         if (!accumulator[id]) {
           accumulator[id] = [];
         }

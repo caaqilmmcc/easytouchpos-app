@@ -1,9 +1,8 @@
-import { Product as ProductType } from "@/components/product.vue";
 
-export function getCartTotal(products?: ProductType[]) {
+export function getCartTotal(products?: any[]) {
   const total = products&&products.reduce(
-    (accumulator: number, currentProduct: ProductType) => {
-      return accumulator + currentProduct.price;
+    (accumulator: number, currentProduct: any) => {
+      return accumulator + currentProduct.rate;
     },
     0
   );
