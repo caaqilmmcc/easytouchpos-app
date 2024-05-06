@@ -121,11 +121,9 @@ import {
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import axios from 'axios'
-import { computed, ref } from 'vue'
-import { useModal } from '@/hook/store'
-import { session } from '@/data/session'
+import {  ref } from 'vue'
+import { currentUser } from '@/hook/currentUser'
 
-console.log(session.user, '🚀')
 const openShift = ref<any>([])
 const isShift = ref(true)
 const formSchema = toTypedSchema(
@@ -151,7 +149,7 @@ openinDialogList()
 const CheckOpeninDialogList = async () => {
   await axios
     .get('/api/method/posawesome.posawesome.api.posapp.check_opening_shift', {
-      params: { user: session.user },
+      params: { user: currentUser() },
     })
     .then((response) => {
       if (response.data.message) {
