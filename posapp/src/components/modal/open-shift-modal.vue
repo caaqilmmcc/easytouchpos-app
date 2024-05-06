@@ -160,7 +160,6 @@ const CheckOpeninDialogList = async () => {
 CheckOpeninDialogList()
 
 const onSubmit = handleSubmit(async (values) => {
-  console.log('🇲🇦', values)
   await axios
     .post(
       '/api/method/posawesome.posawesome.api.posapp.create_opening_voucher',

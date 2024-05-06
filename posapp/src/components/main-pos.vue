@@ -21,7 +21,7 @@ product_categories();
 
 <template>
   <div
-    class="relative space-y-3 flex h-full  flex-col rounded-xl bg-muted/50 p-4 flex-[2] xl:flex-[3]"
+    class="relative space-y-3 flex h-full  flex-col rounded-xl bg-muted/50 p-4 flex-[2] 2xl:flex-[3]"
   >
     <h1 class="text-2xl font-semibold">Products</h1>
     <div class="flex flex-wrap gap-2">

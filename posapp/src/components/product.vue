@@ -25,7 +25,6 @@ const isProductInCart = (product: Product) => {
     (item: Product) => item.item_code === product.item_code
   )
 }
-console.log(product, '🚀')
 </script>
 
 <template>

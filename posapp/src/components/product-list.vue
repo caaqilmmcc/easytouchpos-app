@@ -2,7 +2,6 @@
 import { computed, ref } from 'vue'
 import axios from 'axios'
 import Product from '@/components/product.vue'
-import { Product as ProductType } from '@/components/product.vue'
 import { useCategory } from '@/hook/store'
 import { getOpeningShit } from '@/hook/getOpenShift'
 import { currentUser } from '@/hook/currentUser'
@@ -27,19 +26,18 @@ const productList = async () => {
 }
 productList()
 
-console.log(products, '💯')
 // Compute filtered products based on the selected category
-// const filteredProducts = computed(() => {
-//   return products.value.filter(
-//     (product) => product.category === isSelectedCategory.value
-//   )
-// })
+const filteredProducts = computed(() => {
+  return products.value.filter(
+    (product) => product.item_group === isSelectedCategory.value
+  )
+})
 </script>
 
 <template>
   <div
-    class="grid md:grid-cols-3 lg:grid-cols-4 overflow-scroll xl:grid-cols-6 gap-2">
-    <div v-for="(item, index) in products" :key="index">
+    class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 overflow-scroll 2xl:grid-cols-6 gap-2">
+    <div v-for="(item, index) in filteredProducts" :key="index">
       <Product :product="item" />
 
     

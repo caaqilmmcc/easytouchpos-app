@@ -27,8 +27,8 @@ interface OpenShiftState {
   setOpenShift: (shift: string) => void
 }
 export const useCategory = create<CategoryState>((set) => ({
-  isSelectedCategory: 'ALL',
-  setSelectedCategory: (category = 'ALL') =>
+  isSelectedCategory: 'Demo Item Group',
+  setSelectedCategory: (category = 'Demo Item Group') =>
     set({ isSelectedCategory: category }),
 }))
 
