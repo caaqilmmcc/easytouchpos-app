@@ -6,11 +6,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-
+import { cn } from '@/lib/utils'
 const props = defineProps<{
   title: string
   open: boolean
   onClose: () => void
+  width?: string
 }>()
 const handleClose = () => {
   props.onClose()
@@ -19,11 +20,10 @@ const handleClose = () => {
 
 <template>
   <Dialog :open="open" @update:open="handleClose">
-    <DialogContent>
+    <DialogContent :class="cn(props.width?props.width:'max-w-lg')">
       <DialogHeader>
         <DialogTitle>{{ props.title }}</DialogTitle>
       </DialogHeader>
-
       <DialogFooter>
         <slot />
       </DialogFooter>

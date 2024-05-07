@@ -39,7 +39,7 @@ export const useModal = create<ModalState>((set) => ({
 }))
 
 export const useModalSheet = create<ModalSheetState>((set) => ({
-  isOpen: true,
+  isOpen: false,
   modalType: '',
   onOpen: (name) => set({ isOpen: true, modalType: name }),
   onClose: () => set({ isOpen: false, modalType: '' }),

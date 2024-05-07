@@ -207,10 +207,11 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { DollarSign } from 'lucide-vue-next'
+import { useRouter } from 'vue-router'
 const open = ref(false)
 const openShift = ref<any>([])
 const isShift = ref(true)
-
+const router = useRouter()
 
 const formSchema = toTypedSchema(
   z.object({
@@ -278,6 +279,8 @@ const onSubmit = handleSubmit(async (values) => {
       }
     )
     .then(() => {
-      CheckOpeninDialogList()})
+      router.go(0)
+      CheckOpeninDialogList()
+    })
 })
 </script>
