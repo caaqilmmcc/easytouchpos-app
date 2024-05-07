@@ -25,9 +25,12 @@ const Customers = ref([])
 const getCustomerData = async () => {
   const data = await getOpeningShit(`${currentUser()}`)
   await axios
-    .post('/api/method/posawesome.posawesome.api.posapp.get_customer_names', {
-      pos_profile: JSON.stringify(data.message['pos_profile']),
-    })
+    .post(
+      '/api/method/easytouchpos.easytouchpos.api.posapp.get_customer_names',
+      {
+        pos_profile: JSON.stringify(data.message['pos_profile']),
+      }
+    )
     .then((response) => (Customers.value = response.data.message))
 }
 console.log('hello')
@@ -48,14 +51,15 @@ const value = ref('')
       >
         {{
           value
-            ? Customers.find((Customer:any) => Customer.name === value)?.customer_name
+            ? Customers.find((Customer: any) => Customer.name === value)
+                ?.customer_name
             : 'Select Customer...'
         }}
 
         <ChevronsUpDown class="ml-2 h-4 w-4 shrink-0 opacity-50" />
       </Button>
     </PopoverTrigger>
-    <PopoverContent class="w-80  p-0">
+    <PopoverContent class="w-80 p-0">
       <Command v-model="value">
         <CommandInput placeholder="Search Customer..." />
         <CommandEmpty>No Customer found.</CommandEmpty>

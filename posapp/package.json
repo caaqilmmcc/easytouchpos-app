@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/assets/posawesome/posapp/ && yarn copy-html-entry",
+    "build": "vite build --base=/assets/easytouchpos/posapp/ && yarn copy-html-entry",
     "preview": "vite preview",
-    "copy-html-entry": "cp ../posawesome/public/posapp/index.html ../posawesome/www/posapp.html"
+    "copy-html-entry": "cp ../easytouchpos/public/posapp/index.html ../easytouchpos/www/posapp.html"
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",

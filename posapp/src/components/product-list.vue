@@ -14,7 +14,7 @@ const productList = async () => {
 
   const data = await getOpeningShit(`${currentUser()}`)
   const response = await axios.post(
-    '/api/method/posawesome.posawesome.api.posapp.get_items',
+    '/api/method/easytouchpos.easytouchpos.api.posapp.get_items',
     {
       pos_profile: JSON.stringify(data.message['pos_profile']),
       price_list: '',
@@ -36,11 +36,10 @@ const filteredProducts = computed(() => {
 
 <template>
   <div
-    class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 overflow-scroll 2xl:grid-cols-6 gap-2">
+    class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 overflow-scroll 2xl:grid-cols-6 gap-2"
+  >
     <div v-for="(item, index) in filteredProducts" :key="index">
       <Product :product="item" />
-
-    
     </div>
     <!-- <div v-for="(product, index) in filteredProducts" :key="index">
       <Product :product="product" />

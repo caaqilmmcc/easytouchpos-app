@@ -227,7 +227,7 @@ const { handleSubmit, values, setValues } = useForm({
 
 const openinDialogList = async () => {
   const response = await axios.get(
-    '/api/method/posawesome.posawesome.api.posapp.get_opening_dialog_data'
+    '/api/method/easytouchpos.easytouchpos.api.posapp.get_opening_dialog_data'
   )
   openShift.value = response.data
 }
@@ -235,9 +235,12 @@ openinDialogList()
 
 const CheckOpeninDialogList = async () => {
   await axios
-    .get('/api/method/posawesome.posawesome.api.posapp.check_opening_shift', {
-      params: { user: currentUser() },
-    })
+    .get(
+      '/api/method/easytouchpos.easytouchpos.api.posapp.check_opening_shift',
+      {
+        params: { user: currentUser() },
+      }
+    )
     .then((response) => {
       if (response.data.message) {
         isShift.value = false
@@ -271,7 +274,7 @@ const handleAmoutInput = (event: any, index: number) => {
 const onSubmit = handleSubmit(async (values) => {
   await axios
     .post(
-      '/api/method/posawesome.posawesome.api.posapp.create_opening_voucher',
+      '/api/method/easytouchpos.easytouchpos.api.posapp.create_opening_voucher',
       {
         pos_profile: values.POSProfile,
         company: values.company,

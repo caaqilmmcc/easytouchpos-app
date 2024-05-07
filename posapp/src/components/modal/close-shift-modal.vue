@@ -54,7 +54,7 @@ import axios from 'axios'
 import { currentUser } from '@/hook/currentUser'
 import { getOpeningShit } from '@/hook/getOpenShift'
 import { useRoute, useRouter } from 'vue-router'
-const router =useRouter()
+const router = useRouter()
 const closeShiftPayments = ref([])
 const { isOpen, modalType, onClose } = useModalSheet((state) => state)
 
@@ -62,7 +62,7 @@ const makeClosingShiftFromOpening = async () => {
   const data = await getOpeningShit(`${currentUser()}`)
 
   const response = await axios.post(
-    '/api/method/posawesome.posawesome.doctype.pos_closing_shift.pos_closing_shift.make_closing_shift_from_opening',
+    '/api/method/easytouchpos.easytouchpos.doctype.pos_closing_shift.pos_closing_shift.make_closing_shift_from_opening',
     {
       opening_shift: JSON.stringify(data.message['pos_opening_shift']),
     }
@@ -73,12 +73,11 @@ makeClosingShiftFromOpening()
 const handleSubmit = async (shift: any) => {
   axios
     .post(
-      '/api/method/posawesome.posawesome.doctype.pos_closing_shift.pos_closing_shift.submit_closing_shift',
+      '/api/method/easytouchpos.easytouchpos.doctype.pos_closing_shift.pos_closing_shift.submit_closing_shift',
       {
         closing_shift: JSON.stringify(shift),
       }
     )
     .then((response: any) => router.go(0))
 }
-
 </script>
