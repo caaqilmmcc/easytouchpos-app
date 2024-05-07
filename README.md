@@ -10,3 +10,4 @@ mit# pos-system
 # easytouchpos-app
 # easytouchpos-app
 # easytouchpos-app
+# easytouchpos-app
