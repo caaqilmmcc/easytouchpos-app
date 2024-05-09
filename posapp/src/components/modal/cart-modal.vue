@@ -3,9 +3,9 @@
     <SheetModal
       :open="isOpen && modalType==='CartModal'"
       :onClose="onClose"
-      title="Cart Modal"
+      title="Carts"
     >
-      <PosSheet />
+      <PosSheet hight="h-[calc(100vh-89px-40px)]" />
     </SheetModal>
   </div>
 </template>
