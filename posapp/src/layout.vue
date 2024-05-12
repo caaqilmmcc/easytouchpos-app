@@ -3,7 +3,7 @@
     <Provider />
   </div>
   <div class="flex">
-    <div class="sticky top-0 left-0 h-screen z-40">
+    <div class="sticky w-36  top-0 left-0 h-screen z-40">
       <Sidebar />
     </div>
     <div class="flex flex-1 flex-col">

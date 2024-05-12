@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Checkbox } from '@/components/ui/checkbox'
-import { useCartStore } from '@/hook/store'
+import { useCartStore, useModalSheet } from '@/hook/store'
 
 export type Product = {
+  item_code: any
   id: number
   title: string
   price: number
@@ -14,13 +15,14 @@ export type Product = {
     count: number
   }
 }
+const { onOpen } = useModalSheet((state) => state)
 const { cart, addToCart, removeAllById } = useCartStore((state) => state)
 const { product } = defineProps<{
   product: any
 }>()
 // Check if the cart contains the product object itself
 // Check if the cart contains the product object itself
-const isProductInCart = (product: Product) => {
+const isProductInCart = (product: any) => {
   return cart.value.some(
     (item: Product) => item.item_code === product.item_code
   )
@@ -31,9 +33,7 @@ const isProductInCart = (product: Product) => {
   <div>
     <Checkbox
       :id="`checkbox-${product.item_code}`"
-      @click="
-        isProductInCart(product) ? removeAllById(product) : addToCart(product)
-      "
+      @click="onOpen('ItemDetailModal', product)"
       :checked="isProductInCart(product)"
       class="peer sr-only"
     />
@@ -44,22 +44,19 @@ const isProductInCart = (product: Product) => {
       }`"
     >
       <div
-        class="bg-white rounded-xl flex justify-center items-center w-full h-28"
+        class="bg-white rounded-xl relative overflow-hidden flex justify-center items-center w-full h-36"
       >
         <img
           :src="product.image"
           :alt="product.item_name"
-          class="h-24"
+          class="inset-0 z-0 absolute object-cover w-full h-full"
         />
       </div>
       <div class="p-2">
         <div class="flex justify-between">
           <div class="flex flex-col">
             <b>{{ product.item_name }}</b>
-            <small class="text-gray-400">{{ product.item_group }}</small>
-          </div>
-          <div class="flex flex-col items-end">
-            <p class="font-semibold">Qty: {{ product.is_stock_item }}</p>
+            <small class="text-gray-400">{{ product.description }}</small>
             <b>${{ product.rate }} </b>
           </div>
         </div>

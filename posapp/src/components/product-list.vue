@@ -36,13 +36,10 @@ const filteredProducts = computed(() => {
 
 <template>
   <div
-    class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 overflow-scroll 2xl:grid-cols-6 gap-2"
+    class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 overflow-scroll  gap-2"
   >
     <div v-for="(item, index) in filteredProducts" :key="index">
       <Product :product="item" />
     </div>
-    <!-- <div v-for="(product, index) in filteredProducts" :key="index">
-      <Product :product="product" />
-    </div> -->
   </div>
 </template>
