@@ -3,7 +3,13 @@ import create from 'vue-zustand'
 import { persist } from 'zustand/middleware'
 interface CategoryState {
   isSelectedCategory: string
-  setSelectedCategory: (category?: string) => void
+  subCategory?: string[]
+  isSelectedSubCategory?: string
+  setSelectedCategory: (
+    category?: string,
+    isSelectedSubCategory?: string,
+    subCategory?: string[]
+  ) => void
 }
 interface ModalState {
   isOpen: boolean
@@ -13,14 +19,15 @@ interface ModalState {
 interface ModalSheetState {
   isOpen: boolean
   modalType: string
-  onOpen: (name: string) => void
+  data?: any
+  onOpen: (name: string, dt?: any) => void
   onClose: () => void
 }
 interface CartState {
   cart: Product[]
-  addToCart: (product: Product) => void
-  removeFromCart: (product: Product) => void
-  removeAllById: (product: Product) => void
+  addToCart: (product: any) => void
+  removeFromCart: (product: any) => void
+  removeAllById: (product: any) => void
 }
 interface OpenShiftState {
   openShift: string
@@ -28,8 +35,33 @@ interface OpenShiftState {
 }
 export const useCategory = create<CategoryState>((set) => ({
   isSelectedCategory: 'Demo Item Group',
-  setSelectedCategory: (category = 'Demo Item Group') =>
-    set({ isSelectedCategory: category }),
+  subCategory: [
+    'chicken',
+    'beef',
+    'vegetarian',
+    'supreme',
+    'soda',
+    'juice',
+    'tea',
+    'coffee',
+    'smoothie',
+    'cake',
+    'ice_cream',
+    'pie',
+    'pudding',
+    'cookies',
+    'chips',
+    'nuts',
+    'popcorn',
+    'pretzels',
+  ],
+  isSelectedSubCategory: '',
+  setSelectedCategory: (
+    category = 'Demo Item Group',
+    isSelectedSubCategory,
+    subCategory
+  ) =>
+    set({ isSelectedCategory: category, subCategory, isSelectedSubCategory }),
 }))
 
 export const useModal = create<ModalState>((set) => ({
@@ -41,8 +73,9 @@ export const useModal = create<ModalState>((set) => ({
 export const useModalSheet = create<ModalSheetState>((set) => ({
   isOpen: false,
   modalType: '',
-  onOpen: (name) => set({ isOpen: true, modalType: name }),
-  onClose: () => set({ isOpen: false, modalType: '' }),
+  data: {},
+  onOpen: (name, dt) => set({ isOpen: true, modalType: name, data: dt }),
+  onClose: () => set({ isOpen: false, modalType: '', data: {} }),
 }))
 
 export const useCartStore = create<CartState>()(
@@ -55,7 +88,9 @@ export const useCartStore = create<CartState>()(
         }))
       },
       removeFromCart: (product: any) => {
-        const productToRemove = get().cart.findIndex((p:any) => p.item_code === product.item_code)
+        const productToRemove = get().cart.findIndex(
+          (p: any) => p.item_code === product.item_code
+        )
         set((state) => {
           const newCart = [...state.cart]
           newCart.splice(productToRemove, 1)
@@ -64,7 +99,9 @@ export const useCartStore = create<CartState>()(
       },
       removeAllById: (product: any) => {
         set((state) => {
-          const newCart = state.cart.filter((c) => c.item_code != product.item_code)
+          const newCart = state.cart.filter(
+            (c) => c.item_code != product.item_code
+          )
           return { cart: newCart }
         })
       },
@@ -74,16 +111,3 @@ export const useCartStore = create<CartState>()(
     }
   )
 )
-
-// const useOpenShifStore = create((set) => ({
-//   openShift: {},
-//   setOpenShift: async (user) => {
-//     const response = await fetch(pond)
-//     set({ openShift: await response.data.messate })
-//   },
-// }))
-
-// export const useOpenShifStore = create<OpenShiftState>((set) => ({
-//   openShift: "",
-//   setOpenShift: (shift) => set({ openShift: shift }),
-// }))
