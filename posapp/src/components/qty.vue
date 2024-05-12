@@ -7,8 +7,9 @@
       ><Minus class="w-3 h-3"
     /></Button>
     <p>{{ numberQty }}</p>
+    <!-- numberQty <props.item.is_stock_item &&  -->
     <Button
-      @click="numberQty <props.item.is_stock_item && addToCart(item)"
+      @click="addToCart(item)"
       size="icon"
       class="rounded-full w-5 h-5"
       ><Plus class="w-3 h-3"

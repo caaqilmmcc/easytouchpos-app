@@ -2,16 +2,18 @@
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 const props = defineProps<{
-  title: string
+  title?: string
   open: boolean
   onClose: () => void
-  width?: string
+  width?: string,
+  description?: string,
 }>()
 const handleClose = () => {
   props.onClose()
@@ -21,8 +23,10 @@ const handleClose = () => {
 <template>
   <Dialog :open="open" @update:open="handleClose">
     <DialogContent :class="cn(props.width?props.width:'max-w-lg')">
-      <DialogHeader>
+      
+      <DialogHeader v-if=" props.title && props.description">
         <DialogTitle>{{ props.title }}</DialogTitle>
+        <DialogDescription>{{ props.description }}</DialogDescription>
       </DialogHeader>
       <DialogFooter>
         <slot />
