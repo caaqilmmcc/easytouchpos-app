@@ -46,12 +46,6 @@ export const useCategory = create<CategoryState>((set) => ({
     'coffee',
     'smoothie',
     'cake',
-    'ice_cream',
-    'pie',
-    'pudding',
-    'cookies',
-    'chips',
-   
   ],
   isSelectedSubCategory: '',
   setSelectedCategory: (
