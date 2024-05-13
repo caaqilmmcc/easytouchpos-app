@@ -4,7 +4,7 @@
     :open="isOpen && modalType == 'ItemDetailModal'"
     :onClose="
       () => {
-        activeAddOn=[],
+        activeAddOn=[AddOn[0].label]
         onClose()
       }
     "
@@ -108,7 +108,6 @@ import { useModalSheet } from '@/hook/store'
 import { Plus } from 'lucide-vue-next'
 import CardTitle from '../ui/card/CardTitle.vue'
 import CardDescription from '../ui/card/CardDescription.vue'
-import Badge from '../ui/badge/Badge.vue'
 import { useCartStore } from '@/hook/store'
 import Qty from '@/components/qty.vue'
 import { getCartTotal } from '@/hook/getCartTotal'
@@ -118,8 +117,6 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { cartGroupById } from '@/hook/cartGroupById'
 import { computed, ref } from 'vue'
 import Separator from '../ui/separator/Separator.vue'
-import { cn } from '@/lib/utils'
-import { string } from 'zod'
 
 const Size = ref([
   {
@@ -168,19 +165,15 @@ const isProductInCart = (product: any) => {
   return cart.value.some((item: any) => item.item_code === product.item_code)
 }
 
-const props = defineProps({
-  itemId: string,
-})
 
 const groupBy = computed(() => cartGroupById(cart.value))
-const findeModalItemData = computed(() => {
-  if (groupBy.value[data.value.item_code]) {
-    return getCartTotal(data.value.item_code)
-  } else {
-    return null
-  }
-})
+// const findeModalItemData = computed(() => {
+//   if (groupBy.value[data.value.item_code]) {
+//     return getCartTotal(data.value.item_code)
+//   } else {
+//     return null
+//   }
+// })
 
-// const mydata=groupBy.value[data.value.item_code]
-//     mydata[0].addMore.map((i)=>{activeAddOn.value.push(i)})
+
 </script>

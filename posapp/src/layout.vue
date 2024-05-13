@@ -1,18 +1,21 @@
 <template>
-  <div>
-    <Provider />
-  </div>
-  <div class="flex">
-    <div class="sticky w-36  top-0 left-0 h-screen z-40">
-      <Sidebar />
+  <div class="w-full min-h-screen overflow-hidden">
+
+    <div>
+      <Provider />
     </div>
-    <div class="flex flex-1 flex-col">
-      <div class="sticky top-0 z-40">
-        <Header />
+    <div class="flex">
+      <div class="sticky w-36  top-0 left-0 h-screen z-40">
+        <Sidebar />
       </div>
-      <main>
-        <router-view />
-      </main>
+      <div class="flex flex-1 flex-col">
+        <div class="sticky w-full top-0 z-40">
+          <Header />
+        </div>
+        <main class="w-full">
+          <router-view />
+        </main>
+      </div>
     </div>
   </div>
 </template>
