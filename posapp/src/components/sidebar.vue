@@ -36,8 +36,7 @@ const navItems = [
       'pudding',
       'cookies',
       'chips',
-      'nuts',
-      'popcorn',
+    
     ],
   },
   {
@@ -80,7 +79,7 @@ const navItems = [
 </script>
 
 <template>
-  <aside class="inset-y h-full flex-col border-r flex justify-between">
+  <aside class="inset-y bg-background h-full flex-col border-r flex justify-between">
     <div>
       <div class="border-b flex items-center justify-center h-14 p-2">
         <h1>LOGO</h1>

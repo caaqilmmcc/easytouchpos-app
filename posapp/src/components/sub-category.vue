@@ -10,20 +10,18 @@ const {
   isSelectedCategory,
   isSelectedSubCategory,
 } = useCategory((state) => state)
-console.log(isSelectedCategory, '💯')
 </script>
 
 <template>
-  <div class="flex items-center overflow-auto gap-1">
+  <div class="flex gap-1.5 overflow-hidden">
     <Button
       :variant="isSelectedSubCategory === item ? 'default' : 'outline'"
-      size="sm"
       @click="
         isSelectedSubCategory === item
           ? setSelectedCategory(isSelectedCategory, '', subCategory)
           : setSelectedCategory(isSelectedCategory, item, subCategory)
       "
-      class="capitalize rounded-full cursor-pointer"
+      class="capitalize block rounded-full cursor-pointer"
       v-for="(item, index) in subCategory"
       :key="index"
     >
