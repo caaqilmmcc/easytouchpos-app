@@ -31,11 +31,6 @@ const navItems = [
       'coffee',
       'smoothie',
       'cake',
-      'ice_cream',
-      'pie',
-      'pudding',
-      'cookies',
-      'chips',
     
     ],
   },
